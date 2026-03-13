@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tribes App — UX/UI Review</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --tribes-green: #2D4A3E;
+    --tribes-green-light: #3A6B5A;
+    --accent-gold: #D4A843;
+    --accent-red: #C44D4D;
+    --accent-blue: #4A7FB5;
+    --bg-dark: #1A1F1D;
+    --bg-card: #FAFAF8;
+    --bg-page: #F0EEEA;
+    --text-primary: #1A1F1D;
+    --text-secondary: #6B6B65;
+    --text-on-dark: #E8E6E1;
+    --border: #D8D5CF;
+    --marker-size: 28px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--bg-dark);
+    padding: 48px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(58,107,90,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .site-header .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+  }
+  .site-header .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    border: 1px solid rgba(212,168,67,0.3);
+    padding: 4px 12px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  .site-header h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .site-header h1 em {
+    font-style: italic;
+    color: var(--accent-gold);
+  }
+  .site-header .subtitle {
+    font-size: 16px;
+    color: var(--text-on-dark);
+    opacity: 0.6;
+    max-width: 500px;
+  }
+  .meta-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .meta-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .meta-item span {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+
+  /* ── Screen Section ── */
+  .screen-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+  .screen-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .screen-number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    color: var(--tribes-green);
+    opacity: 0.15;
+    line-height: 1;
+  }
+  .screen-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+  .screen-desc {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    margin-left: 2px;
+  }
+
+  /* ── Two-column layout ── */
+  .review-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* ── Screenshot ── */
+  .screenshot-wrap {
+    position: relative;
+    width: 320px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.06),
+      0 12px 40px rgba(0,0,0,0.1);
+    background: #fff;
+  }
+  .screenshot-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ── Pin markers on screenshot ── */
+  .pin-marker {
+    position: absolute;
+    z-index: 3;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.85;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .pin-marker.red  { background: var(--accent-red); }
+  .pin-marker.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.4);
+    box-shadow: 0 0 0 4px rgba(196,77,77,0.25), 0 2px 12px rgba(0,0,0,0.35);
+    animation: pin-pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pin-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1.4); }
+    50%      { transform: translate(-50%, -50%) scale(1.55); }
+  }
+
+  /* ── Feedback notes ── */
+  .feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .feedback-group-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .feedback-group-title:first-child { margin-top: 0; }
+
+  .note {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: var(--marker-size) 1fr;
+    gap: 14px;
+    align-items: start;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    cursor: default;
+  }
+  .note:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .note.note-red:hover { border-color: var(--accent-red); }
+
+  .note-marker {
+    width: var(--marker-size);
+    height: var(--marker-size);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .note-marker.red    { background: var(--accent-red); }
+  .note-marker.blue   { background: var(--accent-blue); }
+  .note-marker.green  { background: var(--tribes-green-light); }
+
+  .note-body h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .note-body p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    text-align: center;
+    padding: 48px 40px;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+
+  /* ── Responsive ── */
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .review-grid { gap: 32px; }
+    .screenshot-wrap { width: 280px; }
+    .screen-section { padding: 48px 32px; }
+  }
+
+  /* Tablet portrait & large phones */
+  @media (max-width: 900px) {
+    .review-grid {
+      grid-template-columns: 1fr;
+    }
+    .screenshot-wrap {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .site-header { padding: 36px 0 32px; }
+    .site-header .inner { padding: 0 24px; }
+    .site-header h1 { font-size: 36px; }
+    .screen-section { padding: 40px 24px; }
+    .screen-number { font-size: 48px; }
+    .screen-title { font-size: 28px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .site-header { padding: 28px 0 24px; }
+    .site-header .inner { padding: 0 16px; }
+    .site-header h1 { font-size: 28px; margin-bottom: 0; }
+    .site-header .tag { font-size: 10px; padding: 3px 10px; margin-bottom: 14px; }
+    .screen-section { padding: 32px 16px; }
+    .screen-number { font-size: 40px; }
+    .screen-title { font-size: 22px; }
+    .screen-desc { font-size: 14px; margin-bottom: 28px; }
+    .screenshot-wrap {
+      max-width: 100%;
+      border-radius: 18px;
+    }
+    .feedback-list { gap: 14px; }
+    .note { padding: 14px 16px; grid-template-columns: 24px 1fr; gap: 10px; }
+    .note-marker { width: 24px; height: 24px; font-size: 11px; }
+    .note-body h4 { font-size: 13px; }
+    .note-body p { font-size: 12px; }
+    .feedback-group-title { font-size: 10px; }
+    .pin-marker { width: 18px; height: 18px; font-size: 9px; }
+  }
+
+  /* Small phones */
+  @media (max-width: 380px) {
+    .site-header h1 { font-size: 24px; }
+    .screen-number { font-size: 32px; }
+    .screen-title { font-size: 20px; }
+    .note { padding: 12px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════ HEADER ════════════════════════════ -->
+<header class="site-header">
+  <div class="inner">
+    <div class="tag">UX / UI Review</div>
+    <h1>Tribes App <em>Feedback</em></h1>
+  </div>
+</header>
+
+<!-- ══════════════════ PAGE 1 — HOME (HEADER) ══════════════════ -->
+<section class="screen-section">
+  <div class="screen-title-row">
+    <span class="screen-number">01</span>
+    <h2 class="screen-title">Page 1 — Home</h2>
+  </div>
+  <p class="screen-desc">Header area, stats cards, greeting text, coins badge, and notification bell.</p>
+
+  <div class="review-grid">
+    <!-- Screenshot with highlight zones (no permanent dots) -->
+    <div class="screenshot-wrap" id="screenshot-1">
+      <img src="home.png" alt="Tribes Home Screen">
+      <span class="pin-marker red" data-zone="1" style="top:3.5%; left:50%;">1</span>
+      <span class="pin-marker red" data-zone="2" style="top:7%; left:30%;">2</span>
+      <span class="pin-marker red" data-zone="3" style="top:7%; left:90%;">3</span>
+      <span class="pin-marker red" data-zone="4" style="top:7%; left:80%;">4</span>
+      <span class="pin-marker red" data-zone="5" style="top:17%; left:25%;">5</span>
+      <span class="pin-marker red" data-zone="6" style="top:17%; left:75%;">6</span>
+      <span class="pin-marker red" data-zone="7" style="top:15%; left:50%;">7</span>
+    </div>
+
+    <!-- Feedback notes -->
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Status Bar &amp; Header</div>
+
+      <div class="note note-red" data-highlight="1">
+        <div class="note-marker red">1</div>
+        <div class="note-body">
+          <h4>Green color mismatch</h4>
+          <p>There's a visible line between the system status bar and the app header — the two greens don't match. Ensure the status bar background uses the same <code>#2D4A3E</code> brand color.</p>
+
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="2">
+        <div class="note-marker red">2</div>
+        <div class="note-body">
+          <h4>Remove "Welcome, Abbas Hasan!"</h4>
+          <p>Greeting text is redundant — the user knows who they are. Removing it frees up header space and feels less cluttered. Consider a simple "Home" title or just the logo.</p>
+
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="3">
+        <div class="note-marker red">3</div>
+        <div class="note-body">
+          <h4>Hide coins / points badge (500)</h4>
+          <p>Points system is not functional yet. Showing it sets an expectation that isn't met. Hide until the feature is ready to launch.</p>
+
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="4">
+        <div class="note-marker red">4</div>
+        <div class="note-body">
+          <h4>Notification bell — add numeric count</h4>
+          <p>Keep the bell icon but replace the red dot with a numeric badge (e.g. "3") so users know how many unread notifications they have at a glance.</p>
+
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Stats Cards</div>
+
+      <div class="note note-red" data-highlight="5">
+        <div class="note-marker red">5</div>
+        <div class="note-body">
+          <h4>Rename "All matches" → "Matches"</h4>
+          <p>Drop "All" — it's redundant. Remove the "/3" fraction format and just show the count ("2"). Center-align the number and label within the card.</p>
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="6">
+        <div class="note-marker red">6</div>
+        <div class="note-body">
+          <h4>Rename "Pending Wants" → "Pending"</h4>
+          <p>Simplify the label. Just show the number, centered within the card — same treatment as the matches card.</p>
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="7">
+        <div class="note-marker red">7</div>
+        <div class="note-body">
+          <h4>Change stats background to dark green</h4>
+          <p>The current cream/yellow background for the stats section feels disconnected from the brand. Change it to <code>#2D4A3E</code> (same dark green as header/footer) and keep the cards white for contrast.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Content Sections</div>
+
+      <div class="note note-red" data-highlight="7b">
+        <div class="note-marker red">+</div>
+        <div class="note-body">
+          <h4>Remove "Recent Partial Matched" section entirely</h4>
+          <p>This section (visible when scrolling down) takes up a lot of space with a single match card showing distance, profiles, wants/haves detail, "Read more" and "Send Offer" buttons. It's too much for the home screen — matches belong on the dedicated Match tab. Remove this section to keep the home page focused.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PAGE 1 cont. — HOME (SCROLLED) ══════════════════ -->
+<section class="screen-section" style="border-top: 1px solid var(--border);">
+  <div class="screen-title-row">
+    <span class="screen-number">02</span>
+    <h2 class="screen-title">Page 1 — Home (Scrolled)</h2>
+  </div>
+  <p class="screen-desc">Wants &amp; Haves sections, card layout, and information density.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-2">
+      <img src="home-top.png" alt="Tribes Home Screen — Scrolled (Wants & Haves)">
+      <span class="pin-marker red" data-zone="8" style="top:18%; left:22%;">8</span>
+      <span class="pin-marker red" data-zone="9" style="top:50%; left:22%;">9</span>
+      <span class="pin-marker red" data-zone="10" style="top:28%; left:50%;">10</span>
+      <span class="pin-marker red" data-zone="11" style="top:40%; left:35%;">11</span>
+      <span class="pin-marker red" data-zone="12" style="top:55%; left:85%;">12</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Section Naming</div>
+
+      <div class="note note-red" data-highlight="8">
+        <div class="note-marker red">8</div>
+        <div class="note-body">
+          <h4>Rename "All your WANTS" → "What You're Seeking"</h4>
+          <p>The current "All your 'WANTS'" label with quotes feels awkward and overly literal. Use friendlier, more natural language — something like <strong>"What You're Seeking"</strong> or <strong>"Your Requests"</strong>. Drop the quotes and "All your" phrasing.</p>
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="9">
+        <div class="note-marker red">9</div>
+        <div class="note-body">
+          <h4>Rename "All your HAVES" → "What You're Offering"</h4>
+          <p>Same treatment as Wants — replace "All your 'HAVES'" with something natural like <strong>"What You're Offering"</strong> or <strong>"Your Services"</strong>. Keep the language consistent between the two sections.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Card Layout &amp; Information Density</div>
+
+      <div class="note note-red" data-highlight="10">
+        <div class="note-marker red">10</div>
+        <div class="note-body">
+          <h4>Simplify cards — remove price &amp; extra details</h4>
+          <p>The cards currently show too much: price range, type, time ago, matched status all at once. Simplify each card to just the <strong>title</strong> (e.g. "Guitar Lessons") and a <strong>match indicator</strong> (matched/unmatched badge). Price, type, and other details should only appear when the user taps "See all" to go into the detail view.</p>
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="11">
+        <div class="note-marker red">11</div>
+        <div class="note-body">
+          <h4>Switch to horizontal scrollable grid</h4>
+          <p>Currently only one card is visible at a time in a vertical stack. Switch to a <strong>horizontal scrollable grid</strong> that shows ~3 compact cards side by side. This lets users see more items at a glance and feels more modern. Each card should be a small tile — title + match badge only.</p>
+        </div>
+      </div>
+
+      <div class="note note-red" data-highlight="12">
+        <div class="note-marker red">12</div>
+        <div class="note-body">
+          <h4>Background card colors feel off</h4>
+          <p>The muted sage/green tinted backgrounds on the Wants and Haves sections feel disconnected from the rest of the app's styling. Noted for a future design pass — not a priority for this round, but flag for PJ.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════ HOVER JS ════════════════════════════ -->
+<script>
+  document.querySelectorAll('.note[data-highlight]').forEach(note => {
+    const id = note.getAttribute('data-highlight');
+    const pin = document.querySelector(`.pin-marker[data-zone="${id}"]`);
+    if (!pin) return;
+    note.addEventListener('mouseenter', () => pin.classList.add('active'));
+    note.addEventListener('mouseleave', () => pin.classList.remove('active'));
+  });
+</script>
+
+</body>
+</html>
