@@ -54,6 +54,7 @@
     margin: 0 auto;
     padding: 0 40px;
     position: relative;
+    text-align: center;
   }
   .site-header .tag {
     display: inline-block;
@@ -188,7 +189,7 @@
   .pin-marker.active {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.4);
-    box-shadow: 0 0 0 4px rgba(196,77,77,0.25), 0 2px 12px rgba(0,0,0,0.35);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.15), 0 2px 12px rgba(0,0,0,0.35);
     animation: pin-pulse 1.2s ease-in-out infinite;
   }
   @keyframes pin-pulse {
@@ -230,6 +231,14 @@
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
   .note.note-red:hover { border-color: var(--accent-red); }
+  .note.note-theme1:hover { border-color: #2D4A3E; }
+  .note.note-theme2:hover { border-color: #4A7FB5; }
+  .note.note-theme3:hover { border-color: #C44D4D; }
+  .note.note-theme4:hover { border-color: #D4A843; }
+  .note.note-theme5:hover { border-color: #7B6BA5; }
+  .note.note-theme6:hover { border-color: #4A9B8E; }
+  .note.note-theme7:hover { border-color: #C47D4D; }
+  .note.note-theme8:hover { border-color: #8B5E83; }
 
   .note-marker {
     width: var(--marker-size);
@@ -247,6 +256,14 @@
   .note-marker.red    { background: var(--accent-red); }
   .note-marker.blue   { background: var(--accent-blue); }
   .note-marker.green  { background: var(--tribes-green-light); }
+  .note-marker.theme1, .pin-marker.theme1 { background: #2D4A3E; }
+  .note-marker.theme2, .pin-marker.theme2 { background: #4A7FB5; }
+  .note-marker.theme3, .pin-marker.theme3 { background: #C44D4D; }
+  .note-marker.theme4, .pin-marker.theme4 { background: #D4A843; }
+  .note-marker.theme5, .pin-marker.theme5 { background: #7B6BA5; }
+  .note-marker.theme6, .pin-marker.theme6 { background: #4A9B8E; }
+  .note-marker.theme7, .pin-marker.theme7 { background: #C47D4D; }
+  .note-marker.theme8, .pin-marker.theme8 { background: #8B5E83; }
 
   .note-body h4 {
     font-size: 14px;
@@ -257,6 +274,199 @@
     font-size: 13px;
     color: var(--text-secondary);
     line-height: 1.55;
+  }
+
+  /* ── Tab Navigation ── */
+  .tab-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .tab-btn {
+    flex: 1;
+    max-width: 160px;
+    padding: 16px 8px 14px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: rgba(255,255,255,0.4);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover {
+    color: rgba(255,255,255,0.75);
+  }
+  .tab-btn.active {
+    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
+  }
+
+  /* ── Tab Content ── */
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
+
+  /* ── Placeholder ── */
+  .placeholder-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 40px;
+    text-align: center;
+  }
+  .placeholder-section .placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+  }
+  .placeholder-section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .placeholder-section p {
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  /* ── Summary Tab ── */
+  .summary-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+  .summary-header {
+    margin-bottom: 40px;
+  }
+  .summary-header h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .summary-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 640px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .theme-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .theme-card {
+    background: var(--tribes-green);
+    border-radius: 10px;
+    padding: 24px 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: box-shadow 0.15s ease;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+  }
+  .theme-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  /* Chevron indicator */
+  .theme-card::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid rgba(255,255,255,0.7);
+    border-bottom: 2px solid rgba(255,255,255,0.7);
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    opacity: 0.5;
+  }
+  .theme-card.expanded::after {
+    transform: rotate(-135deg);
+  }
+  /* Collapsed state: hide issues & action */
+  .theme-card .theme-issues,
+  .theme-card .theme-action {
+    display: none;
+  }
+  .theme-card.expanded .theme-issues,
+  .theme-card.expanded .theme-action {
+    display: block;
+  }
+  .theme-card:nth-child(2) { background: #4A7FB5; }
+  .theme-card:nth-child(3) { background: #C44D4D; }
+  .theme-card:nth-child(4) { background: #D4A843; }
+  .theme-card:nth-child(5) { background: #7B6BA5; }
+  .theme-card:nth-child(6) { background: #4A9B8E; }
+  .theme-card:nth-child(7) { background: #C47D4D; }
+  .theme-card:nth-child(8) { background: #8B5E83; }
+  .theme-header {
+    margin-bottom: 12px;
+  }
+  .theme-header h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .screen-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .screen-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .theme-issues {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+  }
+  .theme-issues li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.55;
+    padding: 4px 0;
+  }
+  .theme-action {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    border-radius: 6px;
+    padding: 10px 14px;
+    line-height: 1.5;
   }
 
   /* ── Footer ── */
@@ -316,6 +526,13 @@
     .note-body p { font-size: 12px; }
     .feedback-group-title { font-size: 10px; }
     .pin-marker { width: 18px; height: 18px; font-size: 9px; }
+    .tab-btn { font-size: 11px; padding: 12px 4px 10px; }
+    .placeholder-section { padding: 80px 16px; }
+    .placeholder-section h2 { font-size: 24px; }
+    .summary-section { padding: 32px 16px; }
+    .summary-header h2 { font-size: 26px; }
+    .theme-card { padding: 18px 16px; }
+    .theme-header h3 { font-size: 18px; }
   }
 
   /* Small phones */
@@ -324,6 +541,7 @@
     .screen-number { font-size: 32px; }
     .screen-title { font-size: 20px; }
     .note { padding: 12px 14px; }
+    .tab-btn { font-size: 10px; padding: 10px 4px 8px; }
   }
 </style>
 </head>
@@ -332,16 +550,195 @@
 <!-- ════════════════════════════ HEADER ════════════════════════════ -->
 <header class="site-header">
   <div class="inner">
-    <div class="tag">UX / UI Review</div>
-    <h1>Tribes App <em>Feedback</em></h1>
+    <h1>Tribes <em>UI/UX</em> Review</h1>
   </div>
 </header>
+
+<!-- ════════════════════════════ TAB NAV ════════════════════════════ -->
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="summary">Summary</button>
+  <button class="tab-btn" data-tab="home">Home</button>
+  <button class="tab-btn" data-tab="directory">Directory</button>
+  <button class="tab-btn" data-tab="match">Match</button>
+  <button class="tab-btn" data-tab="chat">Chat</button>
+  <button class="tab-btn" data-tab="more">More</button>
+</nav>
+
+<!-- ════════════════════════════ TAB: SUMMARY ════════════════════════════ -->
+<div class="tab-content active" id="tab-summary">
+
+<div class="summary-section">
+  <div class="summary-header">
+    <h2>App-Wide Themes</h2>
+    <p>These are the recurring patterns we noticed across every screen in the app. Read this first, then dive into screen-specific tabs for details.</p>
+  </div>
+
+  <div class="theme-cards">
+
+    <!-- Theme 1 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>1. Visual Consistency — Icons & Colors</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Match</span>
+          <span class="screen-pill">Chat</span>
+          <span class="screen-pill">Profile</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>Status bar green doesn't match header green (Home #1)</li>
+        <li>Filter icon style doesn't match nav icons (Match #3)</li>
+        <li>Status badges use off-brand colors (Chat #1)</li>
+        <li>Menu icons use mixed/inconsistent styles (Profile #1)</li>
+      </ul>
+      <div class="theme-action">Adopt one icon family (e.g. Phosphor, Lucide) app-wide. Audit all color usage against brand palette.</div>
+    </div>
+
+    <!-- Theme 2 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>2. Low Contrast & Flat Visual Design</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Match</span>
+          <span class="screen-pill">Profile</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>Stats section background feels disconnected (Home #7)</li>
+        <li>Match screen background is washed out (Match #1)</li>
+        <li>Profile screen feels dull and flat (Profile #3)</li>
+        <li>Background card colors feel off in Seeking/Offering (Home #12)</li>
+      </ul>
+      <div class="theme-action">Increase contrast between surfaces. Use brand dark green for section backgrounds, white for cards. Add depth with subtle shadows.</div>
+    </div>
+
+    <!-- Theme 3 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>3. Remove Redundant Information</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Chat</span>
+          <span class="screen-pill">Profile</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>"Welcome, Abbas Hasan!" greeting is unnecessary (Home #2)</li>
+        <li>Stats cards (All matches, Pending Wants) appear on both Home AND Profile (Home #5–6, Profile #2)</li>
+        <li>"Recent Partial Matched" section duplicates Match tab (Home #&#43;)</li>
+        <li>Arrow icons on chat rows are redundant (Chat #2)</li>
+      </ul>
+      <div class="theme-action">Each piece of data should have ONE canonical home. Remove duplicates.</div>
+    </div>
+
+    <!-- Theme 4 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>4. Simplify Naming & Language</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Directory</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>"All your WANTS" → "What You're Seeking" (Home #8)</li>
+        <li>"All your HAVES" → "What You're Offering" (Home #9)</li>
+        <li>"All matches" → "Matches" (Home #5)</li>
+        <li>"Pending Wants" → "Pending" (Home #6)</li>
+        <li>"My Directory" → "Listings" (Directory #13)</li>
+      </ul>
+      <div class="theme-action">Use plain, natural language. Drop "All", "My", and quoted jargon.</div>
+    </div>
+
+    <!-- Theme 5 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>5. Reduce Card & List Information Density</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Directory</span>
+          <span class="screen-pill">Match</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>Home cards show too much — price, type, time, matched status (Home #10)</li>
+        <li>Directory list items show too much detail (Directory #16)</li>
+        <li>Match cards have redundant "Check Profile" link (Match #2)</li>
+      </ul>
+      <div class="theme-action">Show only title + status indicator in lists/cards. Details on tap/drill-down only.</div>
+    </div>
+
+    <!-- Theme 6 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>6. Rethink Layout Patterns</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Directory</span>
+          <span class="screen-pill">Match</span>
+          <span class="screen-pill">Chat</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>Vertical card stack → horizontal scrollable grid (Home #11)</li>
+        <li>Seeking/Offering tabs → single scrollable page (Directory #14)</li>
+        <li>Match list → one-at-a-time focused view (Match #2)</li>
+        <li>Duplicate chat threads → one thread per person (Chat #3)</li>
+        <li>Center-align text in match cards (Match #4)</li>
+      </ul>
+      <div class="theme-action">Each screen needs a layout that fits its purpose — scan (horizontal grid), focus (single card), or list (consolidated threads).</div>
+    </div>
+
+    <!-- Theme 7 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>7. Missing Core Functionality</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Home</span>
+          <span class="screen-pill">Directory</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>No way to delete listings (Directory #21)</li>
+        <li>No swipe-to-edit gesture (Directory #21)</li>
+        <li>Notification bell has no count badge (Home #4)</li>
+        <li>Points/coins badge visible but feature not ready (Home #3)</li>
+        <li>Close button overlaps nav bar (Directory #19)</li>
+        <li>Detail view lacks visual structure (Directory #20)</li>
+      </ul>
+      <div class="theme-action">Prioritize delete/edit for listings. Hide unfinished features. Fix CTA overlap.</div>
+    </div>
+
+    <!-- Theme 8 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <h3>8. Quick Wins & Extras</h3>
+        <div class="screen-pills">
+          <span class="screen-pill">Directory</span>
+        </div>
+      </div>
+      <ul class="theme-issues">
+        <li>Add stats summary cards at top of directory (Directory #15)</li>
+        <li>Add edit pencil icon on each row (Directory #17)</li>
+        <li>Keep FAB "+" button as-is (Directory #18)</li>
+      </ul>
+      <div class="theme-action">Small additions that improve usability without major rework.</div>
+    </div>
+
+  </div><!-- /theme-cards -->
+</div><!-- /summary-section -->
+
+</div><!-- /tab-summary -->
+
+<!-- ════════════════════════════ TAB: HOME ════════════════════════════ -->
+<div class="tab-content" id="tab-home">
 
 <!-- ══════════════════ PAGE 1 — HOME (HEADER) ══════════════════ -->
 <section class="screen-section">
   <div class="screen-title-row">
-    <span class="screen-number">01</span>
-    <h2 class="screen-title">Page 1 — Home</h2>
+    <h2 class="screen-title">Home</h2>
   </div>
   <p class="screen-desc">Header area, stats cards, greeting text, coins badge, and notification bell.</p>
 
@@ -349,89 +746,89 @@
     <!-- Screenshot with highlight zones (no permanent dots) -->
     <div class="screenshot-wrap" id="screenshot-1">
       <img src="home.png" alt="Tribes Home Screen">
-      <span class="pin-marker red" data-zone="1" style="top:3.5%; left:50%;">1</span>
-      <span class="pin-marker red" data-zone="2" style="top:7%; left:30%;">2</span>
-      <span class="pin-marker red" data-zone="3" style="top:7%; left:90%;">3</span>
-      <span class="pin-marker red" data-zone="4" style="top:7%; left:80%;">4</span>
-      <span class="pin-marker red" data-zone="5" style="top:17%; left:25%;">5</span>
-      <span class="pin-marker red" data-zone="6" style="top:17%; left:75%;">6</span>
-      <span class="pin-marker red" data-zone="7" style="top:15%; left:50%;">7</span>
+      <span class="pin-marker theme1" data-zone="1" style="top:3.5%; left:50%;">1</span>
+      <span class="pin-marker theme3" data-zone="2" style="top:7%; left:30%;">2</span>
+      <span class="pin-marker theme7" data-zone="3" style="top:7%; left:90%;">3</span>
+      <span class="pin-marker theme7" data-zone="4" style="top:7%; left:80%;">4</span>
+      <span class="pin-marker theme4" data-zone="5" style="top:17%; left:25%;">5</span>
+      <span class="pin-marker theme4" data-zone="6" style="top:17%; left:75%;">6</span>
+      <span class="pin-marker theme2" data-zone="7" style="top:15%; left:50%;">7</span>
     </div>
 
     <!-- Feedback notes -->
     <div class="feedback-list">
 
-      <div class="feedback-group-title">Status Bar &amp; Header</div>
+      <div class="feedback-group-title">Visual Consistency</div>
 
-      <div class="note note-red" data-highlight="1">
-        <div class="note-marker red">1</div>
+      <div class="note note-theme1" data-highlight="1">
+        <div class="note-marker theme1">1</div>
         <div class="note-body">
           <h4>Green color mismatch</h4>
           <p>There's a visible line between the system status bar and the app header — the two greens don't match. Ensure the status bar background uses the same <code>#2D4A3E</code> brand color.</p>
-
         </div>
       </div>
 
-      <div class="note note-red" data-highlight="2">
-        <div class="note-marker red">2</div>
-        <div class="note-body">
-          <h4>Remove "Welcome, Abbas Hasan!"</h4>
-          <p>Greeting text is redundant — the user knows who they are. Removing it frees up header space and feels less cluttered. Consider a simple "Home" title or just the logo.</p>
+      <div class="feedback-group-title">Low Contrast</div>
 
-        </div>
-      </div>
-
-      <div class="note note-red" data-highlight="3">
-        <div class="note-marker red">3</div>
-        <div class="note-body">
-          <h4>Hide coins / points badge (500)</h4>
-          <p>Points system is not functional yet. Showing it sets an expectation that isn't met. Hide until the feature is ready to launch.</p>
-
-        </div>
-      </div>
-
-      <div class="note note-red" data-highlight="4">
-        <div class="note-marker red">4</div>
-        <div class="note-body">
-          <h4>Notification bell — add numeric count</h4>
-          <p>Keep the bell icon but replace the red dot with a numeric badge (e.g. "3") so users know how many unread notifications they have at a glance.</p>
-
-        </div>
-      </div>
-
-      <div class="feedback-group-title">Stats Cards</div>
-
-      <div class="note note-red" data-highlight="5">
-        <div class="note-marker red">5</div>
-        <div class="note-body">
-          <h4>Rename "All matches" → "Matches"</h4>
-          <p>Drop "All" — it's redundant. Remove the "/3" fraction format and just show the count ("2"). Center-align the number and label within the card.</p>
-        </div>
-      </div>
-
-      <div class="note note-red" data-highlight="6">
-        <div class="note-marker red">6</div>
-        <div class="note-body">
-          <h4>Rename "Pending Wants" → "Pending"</h4>
-          <p>Simplify the label. Just show the number, centered within the card — same treatment as the matches card.</p>
-        </div>
-      </div>
-
-      <div class="note note-red" data-highlight="7">
-        <div class="note-marker red">7</div>
+      <div class="note note-theme2" data-highlight="7">
+        <div class="note-marker theme2">7</div>
         <div class="note-body">
           <h4>Change stats background to dark green</h4>
           <p>The current cream/yellow background for the stats section feels disconnected from the brand. Change it to <code>#2D4A3E</code> (same dark green as header/footer) and keep the cards white for contrast.</p>
         </div>
       </div>
 
-      <div class="feedback-group-title">Content Sections</div>
+      <div class="feedback-group-title">Redundant Info</div>
 
-      <div class="note note-red" data-highlight="7b">
-        <div class="note-marker red">+</div>
+      <div class="note note-theme3" data-highlight="2">
+        <div class="note-marker theme3">2</div>
+        <div class="note-body">
+          <h4>Remove "Welcome, Abbas Hasan!"</h4>
+          <p>Greeting text is redundant — the user knows who they are. Removing it frees up header space and feels less cluttered. Consider a simple "Home" title or just the logo.</p>
+        </div>
+      </div>
+
+      <div class="note note-theme3" data-highlight="7b">
+        <div class="note-marker theme3">+</div>
         <div class="note-body">
           <h4>Remove "Recent Partial Matched" section entirely</h4>
-          <p>This section (visible when scrolling down) takes up a lot of space with a single match card showing distance, profiles, wants/haves detail, "Read more" and "Send Offer" buttons. It's too much for the home screen — matches belong on the dedicated Match tab. Remove this section to keep the home page focused.</p>
+          <p>This section (visible when scrolling down) takes up a lot of space with a single match card showing distance, profiles, seeking/offering detail, "Read more" and "Send Offer" buttons. It's too much for the home screen — matches belong on the dedicated Match tab. Remove this section to keep the home page focused.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Naming &amp; Language</div>
+
+      <div class="note note-theme4" data-highlight="5">
+        <div class="note-marker theme4">5</div>
+        <div class="note-body">
+          <h4>Rename "All matches" → "Matches"</h4>
+          <p>Drop "All" — it's redundant. Remove the "/3" fraction format and just show the count ("2"). Center-align the number and label within the card.</p>
+        </div>
+      </div>
+
+      <div class="note note-theme4" data-highlight="6">
+        <div class="note-marker theme4">6</div>
+        <div class="note-body">
+          <h4>Rename "Pending Wants" → "Pending"</h4>
+          <p>Simplify the label. Just show the number, centered within the card — same treatment as the matches card.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Missing Functionality</div>
+
+      <div class="note note-theme7" data-highlight="3">
+        <div class="note-marker theme7">3</div>
+        <div class="note-body">
+          <h4>Hide coins / points badge (500)</h4>
+          <p>Points system is not functional yet. Showing it sets an expectation that isn't met. Hide until the feature is ready to launch.</p>
+        </div>
+      </div>
+
+      <div class="note note-theme7" data-highlight="4">
+        <div class="note-marker theme7">4</div>
+        <div class="note-body">
+          <h4>Notification bell — add numeric count</h4>
+          <p>Keep the bell icon but replace the red dot with a numeric badge (e.g. "3") so users know how many unread notifications they have at a glance.</p>
         </div>
       </div>
 
@@ -440,66 +837,69 @@
 </section>
 
 <!-- ══════════════════ PAGE 1 cont. — HOME (SCROLLED) ══════════════════ -->
-<section class="screen-section" style="border-top: 1px solid var(--border);">
+<section class="screen-section" style="border-top: 1px solid var(--border); padding-top: 40px;">
   <div class="screen-title-row">
-    <span class="screen-number">02</span>
-    <h2 class="screen-title">Page 1 — Home (Scrolled)</h2>
+    <h2 class="screen-title">Home (Scrolled)</h2>
   </div>
-  <p class="screen-desc">Wants &amp; Haves sections, card layout, and information density.</p>
+  <p class="screen-desc">Seeking &amp; Offering sections, card layout, and information density.</p>
 
   <div class="review-grid">
     <div class="screenshot-wrap" id="screenshot-2">
-      <img src="home-top.png" alt="Tribes Home Screen — Scrolled (Wants & Haves)">
-      <span class="pin-marker red" data-zone="8" style="top:18%; left:22%;">8</span>
-      <span class="pin-marker red" data-zone="9" style="top:50%; left:22%;">9</span>
-      <span class="pin-marker red" data-zone="10" style="top:28%; left:50%;">10</span>
-      <span class="pin-marker red" data-zone="11" style="top:40%; left:35%;">11</span>
-      <span class="pin-marker red" data-zone="12" style="top:55%; left:85%;">12</span>
+      <img src="home-top.png" alt="Tribes Home Screen — Scrolled (Seeking & Offering)">
+      <span class="pin-marker theme4" data-zone="8" style="top:18%; left:22%;">8</span>
+      <span class="pin-marker theme4" data-zone="9" style="top:50%; left:22%;">9</span>
+      <span class="pin-marker theme5" data-zone="10" style="top:28%; left:50%;">10</span>
+      <span class="pin-marker theme6" data-zone="11" style="top:40%; left:35%;">11</span>
+      <span class="pin-marker theme2" data-zone="12" style="top:55%; left:85%;">12</span>
     </div>
 
     <div class="feedback-list">
 
-      <div class="feedback-group-title">Section Naming</div>
+      <div class="feedback-group-title">Low Contrast</div>
 
-      <div class="note note-red" data-highlight="8">
-        <div class="note-marker red">8</div>
+      <div class="note note-theme2" data-highlight="12">
+        <div class="note-marker theme2">12</div>
+        <div class="note-body">
+          <h4>Background card colors feel off</h4>
+          <p>The muted sage/green tinted backgrounds on the Seeking and Offering sections feel disconnected from the rest of the app's styling. Noted for a future design pass — not a priority for this round, but flag for PJ.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Naming &amp; Language</div>
+
+      <div class="note note-theme4" data-highlight="8">
+        <div class="note-marker theme4">8</div>
         <div class="note-body">
           <h4>Rename "All your WANTS" → "What You're Seeking"</h4>
           <p>The current "All your 'WANTS'" label with quotes feels awkward and overly literal. Use friendlier, more natural language — something like <strong>"What You're Seeking"</strong> or <strong>"Your Requests"</strong>. Drop the quotes and "All your" phrasing.</p>
         </div>
       </div>
 
-      <div class="note note-red" data-highlight="9">
-        <div class="note-marker red">9</div>
+      <div class="note note-theme4" data-highlight="9">
+        <div class="note-marker theme4">9</div>
         <div class="note-body">
           <h4>Rename "All your HAVES" → "What You're Offering"</h4>
-          <p>Same treatment as Wants — replace "All your 'HAVES'" with something natural like <strong>"What You're Offering"</strong> or <strong>"Your Services"</strong>. Keep the language consistent between the two sections.</p>
+          <p>Same treatment as Seeking — replace "All your 'HAVES'" with something natural like <strong>"What You're Offering"</strong> or <strong>"Your Services"</strong>. Keep the language consistent between the two sections.</p>
         </div>
       </div>
 
-      <div class="feedback-group-title">Card Layout &amp; Information Density</div>
+      <div class="feedback-group-title">Info Density</div>
 
-      <div class="note note-red" data-highlight="10">
-        <div class="note-marker red">10</div>
+      <div class="note note-theme5" data-highlight="10">
+        <div class="note-marker theme5">10</div>
         <div class="note-body">
           <h4>Simplify cards — remove price &amp; extra details</h4>
           <p>The cards currently show too much: price range, type, time ago, matched status all at once. Simplify each card to just the <strong>title</strong> (e.g. "Guitar Lessons") and a <strong>match indicator</strong> (matched/unmatched badge). Price, type, and other details should only appear when the user taps "See all" to go into the detail view.</p>
         </div>
       </div>
 
-      <div class="note note-red" data-highlight="11">
-        <div class="note-marker red">11</div>
+      <div class="feedback-group-title">Layout Patterns</div>
+
+      <div class="note note-theme6" data-highlight="11">
+        <div class="note-marker theme6">11</div>
         <div class="note-body">
           <h4>Switch to horizontal scrollable grid</h4>
           <p>Currently only one card is visible at a time in a vertical stack. Switch to a <strong>horizontal scrollable grid</strong> that shows ~3 compact cards side by side. This lets users see more items at a glance and feels more modern. Each card should be a small tile — title + match badge only.</p>
-        </div>
-      </div>
-
-      <div class="note note-red" data-highlight="12">
-        <div class="note-marker red">12</div>
-        <div class="note-body">
-          <h4>Background card colors feel off</h4>
-          <p>The muted sage/green tinted backgrounds on the Wants and Haves sections feel disconnected from the rest of the app's styling. Noted for a future design pass — not a priority for this round, but flag for PJ.</p>
         </div>
       </div>
 
@@ -507,9 +907,343 @@
   </div>
 </section>
 
+</div><!-- /tab-home -->
 
-<!-- ════════════════════════════ HOVER JS ════════════════════════════ -->
+<!-- ════════════════════════════ TAB: DIRECTORY ════════════════════════════ -->
+<div class="tab-content" id="tab-directory">
+
+<!-- ══════════════════ PAGE 2 — DIRECTORY ══════════════════ -->
+<section class="screen-section">
+  <div class="screen-title-row">
+    <h2 class="screen-title">Directory</h2>
+  </div>
+  <p class="screen-desc">Tab-based "My Directory" screen with Seeking &amp; Offering listings, card details, and FAB button.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-3">
+      <img src="directory.png" alt="Tribes Directory Screen">
+      <span class="pin-marker theme4" data-zone="13" style="top:8%; left:50%;">13</span>
+      <span class="pin-marker theme6" data-zone="14" style="top:15%; left:30%;">14</span>
+      <span class="pin-marker theme8" data-zone="15" style="top:20%; left:50%;">15</span>
+      <span class="pin-marker theme5" data-zone="16" style="top:35%; left:40%;">16</span>
+      <span class="pin-marker theme8" data-zone="17" style="top:35%; left:90%;">17</span>
+      <span class="pin-marker theme8" data-zone="18" style="top:92%; left:80%;">18</span>
+      <span class="pin-marker theme7" data-zone="21" style="top:45%; left:50%;">21</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Naming &amp; Language</div>
+
+      <div class="note note-theme4" data-highlight="13">
+        <div class="note-marker theme4">13</div>
+        <div class="note-body">
+          <h4>Rename "My Directory" → "Listings"</h4>
+          <p>Simpler, more direct label. Users immediately understand this is their stuff — no need for the "My" prefix or the formal "Directory" wording.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Layout Patterns</div>
+
+      <div class="note note-theme6" data-highlight="14">
+        <div class="note-marker theme6">14</div>
+        <div class="note-body">
+          <h4>Remove "Seeking"/"Offering" tabs</h4>
+          <p>Show both sections on one scrollable page instead. The tab design hides half the content behind a tap — displaying both lets users scan everything at once without switching back and forth.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Info Density</div>
+
+      <div class="note note-theme5" data-highlight="16">
+        <div class="note-marker theme5">16</div>
+        <div class="note-body">
+          <h4>Simplify list items</h4>
+          <p>Remove price range, matched/unmatched badge, and "3 months ago" timestamp. Replace with: <strong>emoji icon + title + category/type</strong> (e.g. "🏠 Home Services · Service"). Add a "Manage All" link at the top of each section. Detail info should only appear when user taps into an item.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Missing Functionality</div>
+
+      <div class="note note-theme7" data-highlight="21">
+        <div class="note-marker theme7">21</div>
+        <div class="note-body">
+          <h4>No way to delete listings — add swipe-to-delete and swipe-to-edit</h4>
+          <ul>
+            <li><strong>No delete functionality</strong> — Users currently cannot remove listings they've created. This is a critical missing feature.</li>
+            <li><strong>Add swipe gestures</strong> — Swipe left on a list row to reveal a delete action, swipe right to reveal an edit action. This is a standard mobile pattern (iOS/Android) that keeps the UI clean while providing quick access to destructive and edit actions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Quick Wins</div>
+
+      <div class="note note-theme8" data-highlight="15">
+        <div class="note-marker theme8">15</div>
+        <div class="note-body">
+          <h4>Add stats summary cards at top</h4>
+          <p>Two cards: <strong>"Seeking"</strong> (count of user's listed seeking items) and <strong>"Offering"</strong> (count of user's listed offerings). Simple totals — e.g. "Seeking 10", "Offering 5".</p>
+        </div>
+      </div>
+
+      <div class="note note-theme8" data-highlight="17">
+        <div class="note-marker theme8">17</div>
+        <div class="note-body">
+          <h4>Add edit pencil icon on each row</h4>
+          <p>Clear affordance for quick editing without opening the full item detail view. A small pencil icon on the right side of each list row lets users jump straight to editing.</p>
+        </div>
+      </div>
+
+      <div class="note note-theme8" data-highlight="18">
+        <div class="note-marker theme8">18</div>
+        <div class="note-body">
+          <h4>Keep FAB "+" button — no change needed</h4>
+          <p>The floating action button works well for adding new seeking/offering items. Placement and behavior are solid — keep as-is.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ DIRECTORY — PRODUCT DETAIL ══════════════════ -->
+<section class="screen-section" style="border-top: 1px solid var(--border); padding-top: 40px;">
+  <div class="screen-title-row">
+    <h2 class="screen-title">Directory — Product Detail</h2>
+  </div>
+  <p class="screen-desc">Detail modal for individual listings — layout, CTA placement, and visual structure.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-directory-detail">
+      <img src="directory-detail.png" alt="Tribes Directory — Product Detail">
+      <span class="pin-marker theme7" data-zone="19" style="top:90%; left:50%;">19</span>
+      <span class="pin-marker theme7" data-zone="20" style="top:72%; left:35%;">20</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Missing Functionality</div>
+
+      <div class="note note-theme7" data-highlight="19">
+        <div class="note-marker theme7">19</div>
+        <div class="note-body">
+          <h4>Close button overlaps Match nav icon</h4>
+          <p>The "Close" CTA sits directly behind the floating Match circle in the bottom nav bar, making it nearly impossible to tap. Need to either raise the button above the nav or add bottom padding to the modal content so the CTA clears the nav area.</p>
+        </div>
+      </div>
+
+      <div class="note note-theme7" data-highlight="20">
+        <div class="note-marker theme7">20</div>
+        <div class="note-body">
+          <h4>Detail view lacks visual structure and hierarchy</h4>
+          <ul>
+            <li><strong>No cards, pills, or containers</strong> — "Type:Product | Category:Electronics" is unstyled raw text. Use <strong>pill/tag components</strong> for type and category, and wrap metadata in a light card or section container.</li>
+            <li><strong>Cramped text with no hierarchy</strong> — Title, metadata, and description text have no breathing room. Needs more vertical padding between elements, a clearer font-size hierarchy (larger title, smaller meta text), and consistent left alignment.</li>
+            <li><strong>No separation between list and detail</strong> — The detail modal slides up over the list with no clear boundary — the top of the modal blends into the list items above. Add a visible divider, top shadow, or rounded-top edge so the detail layer reads as a distinct surface.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-directory -->
+
+<!-- ════════════════════════════ TAB: MATCH ════════════════════════════ -->
+<div class="tab-content" id="tab-match">
+
+<section class="screen-section">
+  <h3>Match List</h3>
+  <p class="screen-desc">Main match results screen — card layout, interactions, and visual consistency.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-match-list">
+      <img src="match-list.png" alt="Tribes Match — Results List">
+      <span class="pin-marker theme2" data-zone="m1" style="top:58%; left:15%;">1</span>
+      <span class="pin-marker theme5" data-zone="m2" style="top:33%; left:55%;">2</span>
+      <span class="pin-marker theme1" data-zone="m3" style="top:13%; left:88%;">3</span>
+      <span class="pin-marker theme6" data-zone="m4" style="top:36%; left:25%;">4</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Visual Consistency</div>
+
+      <div class="note note-theme1" data-highlight="m3">
+        <div class="note-marker theme1">3</div>
+        <div class="note-body">
+          <h4>Filter icon doesn't match the rest of the app's icon style</h4>
+          <p>The filter/sliders icon in the top-right has a different visual weight and style compared to icons in the nav bar and other screens. All icons across the app need to use a <strong>consistent icon set</strong> — same stroke weight, size, and style family — to feel cohesive.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Low Contrast</div>
+
+      <div class="note note-theme2" data-highlight="m1">
+        <div class="note-marker theme2">1</div>
+        <div class="note-body">
+          <h4>Low-contrast background makes the screen feel dull and flat</h4>
+          <p>The light grey background behind the white match cards provides almost no contrast — the whole screen reads as washed out. Replace the grey with a <strong>soft green tint</strong> (consistent with Tribes' brand palette) so the white cards pop and the page feels more vibrant and intentional.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Info Density</div>
+
+      <div class="note note-theme5" data-highlight="m2">
+        <div class="note-marker theme5">2</div>
+        <div class="note-body">
+          <h4>Show one match at a time and simplify card interactions</h4>
+          <ul>
+            <li><strong>One at a time</strong> — All 4 matches shown in a scrollable list feels like a directory re-skin, not a focused matching experience. Show <strong>one match at a time</strong> with swipe or next/prev navigation so each match feels intentional.</li>
+            <li><strong>Remove "Check Profile"</strong> — The link next to the heart icon is redundant. Tapping the <strong>person's name</strong> should navigate to their profile directly — removes clutter and follows standard mobile patterns.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Layout Patterns</div>
+
+      <div class="note note-theme6" data-highlight="m4">
+        <div class="note-marker theme6">4</div>
+        <div class="note-body">
+          <h4>Center-align text within match cards</h4>
+          <p>The WANT/HAVE labels, service names, and user info are all left-aligned, which feels unbalanced within the centered card layout. <strong>Center-align all text</strong> within the match cards for visual symmetry and a cleaner, more polished feel.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-match -->
+
+<!-- ════════════════════════════ TAB: CHAT ════════════════════════════ -->
+<div class="tab-content" id="tab-chat">
+
+<section class="screen-section">
+  <h3>Chat List</h3>
+  <p class="screen-desc">Main chat inbox — conversation list, status badges, and navigation.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-chat-list">
+      <img src="chat-list.png" alt="Tribes Chat — Conversation List">
+      <span class="pin-marker theme1" data-zone="c1" style="top:28%; left:75%;">1</span>
+      <span class="pin-marker theme3" data-zone="c2" style="top:28%; left:92%;">2</span>
+      <span class="pin-marker theme6" data-zone="c3" style="top:55%; left:30%;">3</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Visual Consistency</div>
+
+      <div class="note note-theme1" data-highlight="c1">
+        <div class="note-marker theme1">1</div>
+        <div class="note-body">
+          <h4>Status badges introduce off-brand colors</h4>
+          <p>The "Pending" and "Accepted" badges use green tones that aren't part of the Tribes brand palette — these are <strong>new colors</strong> with no precedent in the design system. Use the <strong>established brand colors</strong> for all status indicators. Badge styling and row elements should also match patterns used in other screens for visual consistency across the app.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Redundant Info</div>
+
+      <div class="note note-theme3" data-highlight="c2">
+        <div class="note-marker theme3">2</div>
+        <div class="note-body">
+          <h4>Arrow icons are redundant — remove them</h4>
+          <p>Every chat row has a → arrow icon that adds visual clutter. The <strong>entire row should be tappable</strong> (standard mobile pattern) — no need for an explicit navigation affordance. Remove the arrows to clean up the interface.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Layout Patterns</div>
+
+      <div class="note note-theme6" data-highlight="c3">
+        <div class="note-marker theme6">3</div>
+        <div class="note-body">
+          <h4>Consolidate duplicate conversations — one thread per person</h4>
+          <p>The same person appears multiple times in the chat list (e.g., "Maisum Hashim" × 5, "Daniel Hudson" × 3). Conversations with the same person should be <strong>consolidated into a single thread</strong>, showing the most recent message. This is a known issue that has been previously discussed.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-chat -->
+
+<!-- ════════════════════════════ TAB: MORE ════════════════════════════ -->
+<div class="tab-content" id="tab-more">
+
+<section class="screen-section">
+  <h3>Profile</h3>
+  <p class="screen-desc">User profile and settings — account info, navigation, and support links.</p>
+
+  <div class="review-grid">
+    <div class="screenshot-wrap" id="screenshot-profile">
+      <img src="profile.png" alt="Tribes More — Profile Screen">
+      <span class="pin-marker theme1" data-zone="m1" style="top:48%; left:12%;">1</span>
+      <span class="pin-marker theme3" data-zone="m2" style="top:28%; left:50%;">2</span>
+      <span class="pin-marker theme2" data-zone="m3" style="top:70%; left:50%;">3</span>
+    </div>
+
+    <div class="feedback-list">
+
+      <div class="feedback-group-title">Visual Consistency</div>
+
+      <div class="note note-theme1" data-highlight="m1">
+        <div class="note-marker theme1">1</div>
+        <div class="note-body">
+          <h4>Icons lack consistency — unify icon style across the app</h4>
+          <p>The icons next to menu items (Profile Information, Wants, Haves, Past Projects, Help, Privacy Policy, Terms) use <strong>mixed styles</strong> that don't match each other or icons used elsewhere in the app. All icons should follow a <strong>single, consistent icon family</strong> that aligns with the rest of the app's visual language.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Low Contrast</div>
+
+      <div class="note note-theme2" data-highlight="m3">
+        <div class="note-marker theme2">3</div>
+        <div class="note-body">
+          <h4>Screen looks dull — needs better contrast and visual hierarchy</h4>
+          <p>The profile screen feels <strong>flat and washed out</strong>. Light grey backgrounds, thin dividers, and muted text create a low-contrast appearance. Improve visual hierarchy with <strong>better contrast</strong> between sections, bolder typography for headings, and more intentional use of the brand color palette to make the screen feel polished and engaging.</p>
+        </div>
+      </div>
+
+      <div class="feedback-group-title">Redundant Info</div>
+
+      <div class="note note-theme3" data-highlight="m2">
+        <div class="note-marker theme3">2</div>
+        <div class="note-body">
+          <h4>Remove redundant data cards — this info lives elsewhere</h4>
+          <p>The "All matches" and "Pending Wants" summary cards <strong>duplicate information</strong> that already exists in other tabs (Match tab, Wants section). Remove these cards to eliminate redundancy — users can access this data from its primary location. Every piece of information should have <strong>one canonical home</strong> in the app.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</div><!-- /tab-more -->
+
+<!-- ════════════════════════════ JS ════════════════════════════ -->
 <script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, 0);
+    });
+  });
+
+  // Theme card accordion toggle
+  document.querySelectorAll('.theme-card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+  });
+
+  // Pin hover highlights
   document.querySelectorAll('.note[data-highlight]').forEach(note => {
     const id = note.getAttribute('data-highlight');
     const pin = document.querySelector(`.pin-marker[data-zone="${id}"]`);
